@@ -1,0 +1,857 @@
+=========
+04.20
+=========
+
+(Source code) input by human
+(Source code) compiles into (byte code - gibberish)
+(Byte code) JVM compiles into (machine code - 1010)
+
+Class:
+Properties (attributies or fields) -> name: "John Doe", then name is the property of "John Doe"
+Methods (functions) -> sayHello: function(), Method is a function stored in an Object. sayHello is the method of the object.
+
+Types of data:
+Primitive type (basic type of data) = fundamentals of Java (int, double, float, etc...)
+Reference type = typed in by us, then stored
+
+=========
+04.27
+=========
+
+Private
+-> Accessible from within the class (instance variables)
+
+Public
+-> Accessible from any class (classes / constructors)
+
+Constructor
+-> has the exact same name as the class
+-> always public
+
+= (Assigns value)
+== (Checks equivalence for value)
+=== (Checks equivalence for value and type (strictly equal))
+
+Logical Operators
+&& (AND) || (OR) !(NOT)
+
+Relational Operators
+=, ==, ===, =>, <=, !=
+
+CambelCasing
+-> firstName
+
+PascalCasing
+-> S in String is the pascal casing
+
+JavaDoc
+-> Documenting a Java Document.. ahh...!
+@author, @version, @param (describes a method parameter)
+*Note. @param It is only for inputs. ex. default constructors do not take in any parameters
+
+=========
+05.04
+=========
+2 methods of many...
+
+Accessors
+-> 'get' methods / getters
+-> give other classes access to private data (instance variables)
+ex. public <return type> getInstanceVariableName()
+
+Mutators
+-> 'set' methods / setters
+-> allow other classes to change variable type data
+ex. public void setInstanceVariableName(<data type> new variable value)
+
+Short circuiting on logical operators
+ex. if (5>3 && 5>6 && 4>5)
+	-> notice, it stops at 5>6 and 4>5 does not get evaluated
+
+Methods
+-> most are public
+
+Console Output
+-> System.out.print(); ##writes on same line
+-> System.out.println(); ##writes on a new line
+
+public static void main(String[] args)
+-> this exact method will run automatically
+
+=========
+05.11
+=========
+
+*Parameter is a type of local variable
+
+Local variables
+- Local variables defined inside a method
+- Local variables are created when method is called, destroyed when method ends its run
+- Only accessible within the method (local scope)
+
+Instance variables
+- Instance variables defined inside a class
+- Instance variables are created when object is called, destroyed when object ends its run
+- Accessible anywhere in its class (class scope)
+
+static variables
+- static variables belong to the class
+- access static variables without class instantiation using keyword static -> public static int population (example)
+
+static methods
+- static methods belongs to the class
+- can only use static variables (class variables), cannot access instance variables
+
+Constants("final")
+- constants never change values
+- declared with the keyword 'final' at the class level and _ to separate words
+- ex. final int NUMBER_OF_SECONDS_PER_MINUTE = 60;
+- ex. public static final (int/string) NUMBER_OF_SOMETHING = (6 or "Tom");
+
+=========
+05.18
+=========
+
+###Arithmetic Operators
++=
+-=
+*=
+/=
+%=
+
+###Incrementing and Decrementing
+++
+--
+
+###Overloading
+- Constructors and methods can both be overloaded
+- Overloading allows a class to have two or more methods having the same name, as long as their signatures are different
+- Signatures (different number of parameters, different type of parameters and/or different order of parameters)
+ex. 
+public Book()
+public Book(String title)
+public Book(int numPages)
+public Book(String title, int numPages)
+
+
+###Switch/Case
+class Switch {
+	public static void test(String direction){
+		switch(direction){
+			case "north":
+				System.out.println("going up");
+				break; // if you remove this break, “north” prints “going up going down”
+			case "south":
+				System.out.println("going down");
+				break;
+			case "west":
+				System.out.println("going left");
+				break;
+			case "east":
+				System.out.println("going right");
+				break;
+			default:
+				System.out.println("error");
+				break;
+			}
+	}
+}
+
+class Switch {
+	public static void test(String direction){
+		switch(direction){
+			case "north":
+			case "south":
+			case "west":
+			case "east":
+			case ('something1'):
+			case ('something2'):
+				System.out.println("These are directions");
+				break;
+			}
+			default:
+				System.out.println("error");
+				break;
+	}
+}
+
+
+##OR multiple Case
+
+
+###Switch/If
+if(selection == 1){
+	// do something here
+}else if(selection == 2){
+	// do something here
+}else if(selection == 3){
+	// do something here
+}else{
+	// do something here when all other // cases fail
+}
+
+
+###AVOID DRY
+*From the Constructor, refer to method.
+*Remember, a constructor is a 'special method'
+
+Example:
+
+public class Person {
+
+private int age;
+/*
+* @param _age Person's age
+*/
+public Person(int _age) {
+	setAge( _age); // This will call the below method for validation because setAge(_age) is not in it's local scope, therefore it 'bubbled' to class level.
+// This is called "internal method"
+}
+
+public void setAge(int _age) {
+	if (_age < 10) {
+		age = _age;
+		}
+	}
+}
+
+###Default & Overloaded Constructor
+Default constructors -> no parameters -> we can set default values
+Overloaded constructors -> have parameters
+
+###Overloaded Constructor
+Overloaded constructors can take in multiple parameters, but the parameters must not overlap
+*Consider the constructor: public Person (String a, String b, int c, double d).
+NOT Ok -> public Person (String b, String a, int c, double d) -> order ***MATTERS***, java looks at type, not the variable
+Ok -> public Person (int c, double d, String a, String b)
+
+###Switch statements
+*Switch statements can be replaced with if/elif/else statements.
+1) Does not require "break", as 'return' is the break.
+public String getMonthString() {
+	switch(month) {
+		case 1:
+			return "January";
+		case 2: 
+			return "February";
+...
+		default: 
+			return "n/a";
+	}
+} 
+
+2) Requires break, because assignment does not break the loop.
+String monthString;
+
+public String getMonthString() {
+	switch(months) {
+		case 1:
+			monthString: "January";
+			break;
+		case 2: 
+			monthString: "February";
+			break;
+...
+		default:
+			monthString: "n/a";
+			break;
+		return monthString;
+	}
+} 
+
+###Pre-increment/Post-increment
+Pre: a++
+evaluation, then +1
+Post: ++a
++1, then evaluation
+
+=========
+05.25
+=========
+
+Object Interaction:
+Objects interact with each other by invoking each other’s methods
+
+Abstraction:
+Abstraction is the ability to ignore details of parts to focus attention on a higher level of a problem
+
+Modularization:
+Modularization is the process of dividing a whole into well-defined parts, which can be built and examined separately, and which interact in well-defined ways
+
+Classes as data types:
+Anything that is not a primitive data type in Java, is an object type
+
+Creating Objects:
+An object is created by using the Java key word ‘new’ and calling the object’s constructor. When creating an object in a class, we first declare a variable and assign the new object to that variable.
+e.g.
+Player player1 = new Player();
+The data type is Player
+The variable name is player1
+
+Calling methods:
+Now we can call methods of the Player class.
+e.g.
+player1.getName()
+player1.printDetails()
+player1.setNumberOfWins(79);
+
+________
+
+
+Modularization
+- Breaking one class into many classes which can be built and examined separately, interact in well-defined ways.
+ex. class House has other classes that reference it.
+-> class House = class Windows + class Paint + class Material
+
+Abstraction
+- Calls premade function, algorithms. By using abstraction, we do not have to learn how the underlying code works. We just have to use it.
+
+ex. class Person {
+private age1 = 1;
+public age2 = 1;
+// has function setAge1() and sets age1;
+// has function getAge1() and gets age1;
+// has function setAge2() and sets age2;
+// has function getAge2() and gets age2;
+}
+
+class Person <- class Playground
+"Playground depends on Person class"
+
+public class Playground {
+public void run() {
+Person person1 = new Person(); // This is reference type Person
+int age = person1.getAge();
+System.out.println(person1.getAge()); // Outputs 1
+person1.setAge(10);
+System.out.println(person1.getAge()); // Outputs 10
+Person person2 = new Person("Gary, "Tong");
+System.out.println(person2.getFirstName); // Outputs "Gary"
+}
+}
+
+Public vs Private
+- Public = accessible from another class
+- Private = not accessible from another class, must use getFunctions or setFunctions
+
+public class Playground {
+public void run() {
+Person person3 = new Person();
+(INVALID on private) person3.age1 = 1000; // This will not work because age1 is private. This will NOT set age1
+(VALID on private) person3.setAge1(1000); // This will work even on private variable because we used an accessor method
+(VALID on private) person3.getAge1(); // This will work even on private variable because we used a getter method
+(VALID on public) person3.age2 = 1000; // This will work because age1 is public.
+(VALID on public) person3.setAge2(1000); // This will work, but unnecessary because the variable was public
+(VALID on public) person3.getAge2(); // This will work, but unnecessary because the variable was public
+}
+}
+
+=========
+06.01
+=========
+
+References (identity vs equality)
+null
+this
+Debugging techniques
+
+###Primitive:
+- int i; // This is value (like 32)
+
+###Object reference
+- SomeObject obj; // Aaddress or its hash (ex. 0x4C990F)
+
+ex.
+public class Person {
+	private int yearBorn; // This is value (like 32)
+	private String lastName; // Address (like 0x4C990F)
+	...
+}
+
+ex.
+Guppy a = new Guppy(); -> 0x001 (different hashes)
+Guppy b = new Guppy(); -> 0x002 (different hashes)
+
+ex.
+b = a;
+then...
+a -> 0x001 (same hash)
+b -> 0x001 (same hash)
+
+###Tests identity
+if (input == "bye") {
+	...
+}
+
+###Tests equality
+*"Always use .equals to test whether Strings (or other objeccts) are equal; do not use =="
+if (input.equals("bye")) {
+	...
+}
+
+ex. person1 = "Elzbieta", person2 = "Bryn"
+-> person1==person2? NO
+ex. person1 = "Elzbieta", person2 = "Elzbieta"
+-> person1==person2? NO
+ex. person1 = "Elzbieta", person2 = "Elzbieta"
+-> person1==person2? YES. UNPREDICTABLE!
+
+###null
+- 'null' is case-sensitive
+- 'null' is an unset reference (reference to nothing)
+- cannot assign 'null' to primitive types
+- Object fields are initialized to 'null' by default
+- // WILL NOT COMPILE. ex. int number = null;
+- // WILL COMPILE. ex. myLittleGuppy.setName(null);
+
+###'this'
+- 'this' is a reference to the current object
+- "internal method call?" A method invoked on 'this' object
+ex. 
+public class Dog{
+	private String name;
+	private int yearOfBirth;
+
+	public Dog(String name, int yearOfBirth) {
+		this.name = name;
+		this.yearOfBirth = yearOfBirth;
+		System.out.println(getDetails());
+		System.out.println(this.getDetails());
+	}	
+
+	public String getDetails() {
+		return "I am a Dog named " + name + ". Born in " + yearOfBirth;
+	}
+}
+
+###Debugging 
+- Debugging involves tracing through our code to locate and fix an error
+- Techniques for debugging
+1) Hand tracing - pencil and paper
+2) Print statements inserted in code
+3) BlueJ's 'Inspect"
+4) BlueJ's Debugger
+	-> Stack trace
+	-> Step
+	-> Watch windows (static, instances, local variables)
+
+_________________
+
+"private String name = new Person()"
+^ "String name" = declaration
+^ "new Person()" = instantiation
+
+"Person person1 = new Person()"
+^ Person = Reference type
+^ person1 = variable name 
+^ = assignment operator
+^ new Person() constructor
+^ "new" reference the address of "person1":
+
+Recall, person1.setAge() = ___ uses the "dot operator" which invokes public scope because setAge was setup with public scope.
+
+Constants:
+public class Playground {
+	public static final int MAX_AGE = 65;
+		public void run() {
+		...
+	}
+}
+
+Pseudo Address:
+(((Strings)))
+e.g.)
+public void run2() {
+	Person person1 = new Person(); // person 1-> pseudo address of 0x004x... (hexadecimal memory address)
+	Person person2 = person1; // person2 -> pseudo address of 0x004x...
+	person2.setName("Gilson");
+	person1.setName("Gary");
+	System.out.println(person1.getName); // outputs "Gary"
+	System.out.println(person2.getName); // outputs "Gary" as well, because person2 is a copy of person1, in other words "two variables points to the same address"
+-> Basically, you are "mutating the same state, and setting new state"
+-> To have 2 different pseudo addresses:
+	Person person1 = new Person();
+	Person person2 = new Person();
+**Therefore, to check whether String values are equal
+DO NOT USE -> if (person1.getName() == person2.getName()) ... // because this checks their psuedo address. They could have 2 different pseudo address with the same String value.
+	-> This is literally 0x04...== 0x05... It does not evaluate the String.
+DO USE	   -> if ((person1.getName().equals(person2.getName())) ... // "Method chaining" or "Fluid interface"
+
+(((Primitives)))
+...no problems.
+	int a = 10;
+	int b = a;
+	System.out.println(a); // outputs 10
+	System.out.println(b); // outputs 10
+
+
+
+Checks that name is not empty or null:
+[BAD] if(_firstName != null && _firstName !="") ...
+[GOOD] if(_firstName != null && _firstName.trim().length>0) ... // .trim(), trims white spaces
+[ANOTHER GOOD using 'this' keyword]
+public void setFirstName(String firstName){
+	if(firstName != null && firstName.trim().length>0){
+		this.firstName = firstName; // notice that we no longer use "_" in front of firstName	
+	}
+}
+
+
+Using 'this' keyword in 'Overstructor':
+public Person(String firstName, String lastName){
+	setFirstName(firstName);
+	this.setLastName(lastName); // using 'this' is optional, it could be written setLastName(lastName);
+}
+
+=========
+06.08
+=========
+
+Arrays:
+- Array of size n is indexed 0 to n-1
+- Array's length is fixed, if it is set to 12, then it will always remain 12
+- Arrays can only contain one type
+
+
+
+e.g.)
+private int[] gradePercentages;
+private String[] studentNames;
+...
+ 
+gradePercentages = new int[24];
+studentNames = new String[CLASS_SIZE];
+...
+gradePercentages[FINAL_EXAM] = 90;
+return gradePercentages[FINAL_EXAM];
+System.out.println(studentNames[index]);
+
+
+
+We can declare and initialize a String literal in one step:
+-> String myFirstName = “Java lover”;
+We can also declare and initialize an Array literal in one step too, using {curly braces}:
+-> private char[] vowels = { ‘a’, ‘e’, ‘i’, ‘o’, ‘u’ };
+Note: Array literals can only be used in initializations
+
+
+
+e.g.)
+class Province{
+	private String[] cities;
+	public Province(){
+		String homeTown = "vancouver";
+		String[] cities2 = {homeTown, null, null, "calgary", "ottawa"}; // Array literal; length is 5
+		cities = new String[4];
+		cities[1] = "edmonton";
+		cities[1] = "calgary"; // no more edmonton
+		cities[0] = "vancouver";
+		cities[3] = "saskatoon";
+	}
+}
+
+
+e.g.)
+private char[] vowels = { ‘a’, ‘e’, ‘i’, ‘o’, ‘u’ };
+int n = vowels.length; // n = 5
+/*	
+* We can determine the size of the Array using the length operator
+* Note there are no parentheses ( )
+* length is not a method, length is a public final property
+*/
+
+
+While loop with an array
+e.g.)
+private int[] numbers = {2, 4, 6, 8};
+int index = 0;
+int sum = 0;
+while(index < numbers.length) {
+	sum += numbers[index];
+	index++;
+}
+System.out.println(“Sum = ” + sum);
+
+e.g.)
+public void printNames(){
+	String[] peopleNames = {"donald", null, "hilary"};
+	int i = 0;
+	while(i < peopleNames.length){
+		if(peopleNames[i] != null){
+			System.out.println(peopleNames[i]);
+		}
+		i++;
+	}
+}
+}
+
+______________
+
+
+Recall:
+Person p2 = new Person
+(Declaration) -> Person p2
+(Instantiation) -> new Person
+(Initialization) = (Declaration) + (Instantiation)
+
+Integer array:
+public void playWithArrays() {
+	int numbers[] = new int[10]; // or int[] numbers = new int[10]
+					// this creates an integer array of 10 items
+	// recall integers have a default value of 0, so numbers[0] = 0
+}
+
+String array:
+public void playWithArrays2() {
+	String words[] = new String[10]; 
+					// this creates a String array of 10 items
+	// recall Strings have a default value of 'null', so words[0] = null
+	// ~ words[0].toUpperCase();
+}
+
+
+** DO NOT use System.out.println(INSERTARRAYHERE), because this prints out the location of the array (points to memory), instead you must use a loop, then print out each individual item in array
+** numbers[0] = 5 "reaches into memory and assigns 5"
+
+
+Reference-type array:
+public void playWithArrays3() {
+	Person people[] = new Person[10];
+	people[0] = new Person();
+	people[0].setFirstName("Emily");
+	System.out.println(people[0].getFirstName());
+}
+
+Default values:
+Int = 0
+String = null
+Reference = null
+Boolean = false
+
+Array out of bounds:
+String name[] = new name[5];
+if - numbers[5] = "Gilson", this is a run-time. Not a compile error. Array out of bounds.
+
+While loops will keep running while condition boolean is true
+
+Identity vs Equality
+Idetntiy = address
+Equality = value
+
+=========
+06.15
+=========
+
+Two-Dimensional Arrays:
+- Used to represent the data in table format (rows and columns)
+- Uses two subscripts: rows and columns
+- Can be visualized as a matrix or a table:
+  The first subscript indicates the number of rows, the second one is for the number of columns
+	int[][] a = new int [3][4];	// row column
+	// a[0] is the top row
+	// a[0][3] is the top right int
+** a is an array of size three; a is an array of arrays
+** IOW, a is an array of size (array's row)
+
+Two-Dimensional Arrays declaration:
+-> int [][] numbers ={{1,2},{3,4}};
+/* Visually:
+*	1 2
+*	3 4
+*/
+
+Two-Dimensinoal Arrays length:
+- Array rows can be different lengths
+- Array rows all must be the same type
+numbers = new int[3][]; // or int [][] numbers = new int[3][]; defines three int arrays
+numbers[0] = new int[4];	// first row holds 4 ints
+numbers[1] = new int[500];	// second row holds 500 ints
+numbers[2] = new int [7];	// third row holds 7 ints
+
+Example of for-loop:
+class NameRegistry{
+	private String[] names;
+	public NameRegistry(){
+		names = new String[5];
+		names[0] = "Bill";
+		names[1] = "Tom";
+		names[2] = "Mary";
+		names[4] = "Sue";
+	}
+	public void displayNamesInUpperCase(){
+		for(int i = 0; i < names.length; i++){
+			if(names[i] != null){
+				System.out.println(names[i].toUpperCase());
+			}
+		}
+	}
+}
+
+Efficiency of loops:
+// The following while loop:
+int i = 1;
+while (i <= 10) {
+	System.out.println(i);
+	i++;
+}
+// Can be replaced with:
+for (int i = 1; i <= 10; i++) {
+	System.out.println(i);
+}
+_____________
+
+LESSON 8:
+(Declaration) Person p2
+(Instantiation) new Person
+(Initialization) Person p2 = new Person;
+
+Integer arrays:
+*Note: integers have default value of 0
+public void playWithArrays() {
+	int numbers[] = new int[10];
+}
+
+String arrays:
+*Note: strings have default value of null
+*Note2: Do not print arrays, because it prints the array's location. Instead, run through a loop and print each element in array
+public void playWithArrays2() {
+	String words[] = new String[10];
+}
+
+~words[i].toUpperCase();
+
+Reference type:
+*Note: Reference type have default value of null
+e.g. Person people[i] = new Person[10];
+e.g. people[0].setFirstName("Emily");
+e.g. System.out.println(people[0].getFirstName());
+
+______________
+
+LESSON 9:
+
+2-dimensional arrays. 
+e.g. int numbers[][] = new int[3][4];
+	-> think "array inside another array" (see notes for picture of Columns inside Rows)
+
+Nested for-loop
+*We want to print the array int[3][4]
+public void run() {
+	for(int i=0; i<3; i++) {
+		for(int j=0; j<4; j++) {
+			System.out.print(numbers[i][j]);
+			// This is call "needle in haystack" or "search & destroy"
+		}
+	}
+}
+
+=========
+06.22
+=========
+
+Collections:
+- Java collections are sets, lists, and maps
+- A Collection is a container that groups similar elements
+- Examples would include a list of bank accounts, a set of students, a group of telephone numbers
+- Collections are used to store groups of related objects in memory
+*One type of Collection is ArrayList
+
+Autoboxing:
+- An ArrayList is a list, not an array
+- Autoboxing can make it appear that ArrayLists can hold primitives
+- ArrayList<Integer> myArrayList;
+e.g. myArrayList.add(5); // Becomes myArrayList.add(new Integer(5)); automatically
+The int 5 was promoted to an Integer object
+Integer is a wrapper class for int
+int x = myArrayList.get(0); // unboxed back to int
+Integer x = myArrayList.get(0); // still an Integer object
+
+Arraylist:
+*In order to make use of the ArrayList class, it must first be imported from the java.util package
+- Every type that uses “<T>” notation is called a parametrized type or generic type
+- This means that every time you use that type, you can specify what kind of object references it holds inside the “< >” notation
+- Keep in mind only object reference types can be used in generic classes
+- Each element in the ArrayList is accessible by a zero-based index
+- The ArrayList class provide as selection of powerful methods that can do many things
+- Some of the methods that we will work with is:
+add(Element e)
+remove(int index)
+get(int index)
+size()
+“RAGS”
+
+add(Element e):
+- add elements to the end of the ArrayList
+
+remove(int index):
+- can take an int as a parameter.
+- This int parameter represents the index of the element to remove
+
+get(int index):
+- takes an int parameter indicating which element we want, and returns a reference to that element from the ArrayList
+- The valid index numbers that correspond to actual references in the ArrayList are always in the range from zero to size()-1
+
+size():
+- Method size() takes zero parameters and returns the current number of elements in the ArrayList.
+
+e.g.
+import java.util.ArrayList;
+public class BookStore
+{
+	private ArrayList<Book> books;
+	public BookStore(){
+		books = new ArrayList<>();
+		books.add(new Book("harry potter", 1995));
+		books.add(new Book("lord of the rings", 1954));
+		books.remove(0);
+		System.out.println(books.get(0).getTitle()); // lord of the rings
+		System.out.println(books.size()); // 1, now
+	}
+}
+
+'for-each' loop:
+- This kind of loop has been designed to cycle through all the elements in collections such the ArrayList
+
+____________
+
+
+ArrayList:
+*ArrayList is also a Collection
+import java.util.ArrayList; // ArrayList requirement
+public class Playground {
+	private ArrayList<Person> people; // <> is called "Chevron"	
+	public Playground() {	
+		people = new ArrayList<>(); // initialization
+	}
+	public void addPeople() {
+		Person p1 = new Person();
+		p1.setFirstName("Emily");
+		people.add(p1); // people has size 1
+	public void printDetails() {
+		people.get(0) // ***AVOID*** This will get you the address
+		people.get(0).getFirstName(); // This can be continued with people.get(0).getFirstName().toUpperCase();
+		people.size(); // Similar to .length()
+		people.remove(0); // Removes person(0)
+
+Foreach:
+for(Person p: people) { // Reads from beginning to end
+	System.out.println(p.getFirstName());
+
+(VERSION 1)
+public void removePerson(int i) {
+	if(i>0 && i<people.size()) {
+		people.remove(i);
+
+(VERSION 2)
+import java.util.Iterator; // Iterator requirement
+Iterator<Person> it = people.iterator();
+while(it.hasNext()) { // hasNext() will run, if there is something next
+	Person p = it.next(); // moves over iterator
+	if(p.getAge() > 65) { // checks age
+		it.remove();
+	}
+	System.out.println(p.getFirstName());
+
+
+
+ 
