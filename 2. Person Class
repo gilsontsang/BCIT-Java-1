@@ -1,0 +1,46 @@
+/**
+ * This is a Person class
+ * 
+ * @author Gilson Tsang
+ * @version 1.0.1
+ * 
+ */
+
+
+class Person {
+    private String firstName; //This is an instance variable
+    private String lastName;  //This is an instance variable
+    private int age;          //This is an instance variable
+    private double height;    //This is an instance variable
+    
+    /**
+     * This is the Person ctro
+     * 
+     * @param _firstName Person's first name
+     * @param _lastName Person's last name
+     * @param _age Person's age
+     * @param _height Person's height
+     * 
+     */
+    
+    public Person(String _firstName, String _lastName, int _age, double _height) {
+       if (_age >= 1 && _age <= 100) {
+           age = _age;
+       }
+       else {
+           age = 1;
+       }
+       
+       if (_height >= 1 && _height <= 200) {
+           height = _height;
+       }
+       else {
+           height = 150.0;
+       }
+       
+       firstName = _firstName;
+       
+       lastName = _lastName;
+    }
+
+}
